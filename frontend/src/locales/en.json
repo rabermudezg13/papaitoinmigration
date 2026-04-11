@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "register": "Client Registration",
+    "admin": "Attorney Portal"
+  },
+  "lang": {
+    "toggle": "Español"
+  },
+  "form": {
+    "title": "Immigration Services – Client Intake Form",
+    "subtitle": "Please fill out the form below. An attorney will contact you shortly.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "country": "Country of Origin",
+    "processType": "Type of Process",
+    "description": "Describe your situation",
+    "descriptionHint": "Please provide as much detail as possible about your case.",
+    "submit": "Submit Registration",
+    "submitting": "Submitting...",
+    "successTitle": "Registration Submitted!",
+    "successMsg": "Thank you. Your information has been received. An attorney will be in touch with you soon.",
+    "newForm": "Submit another form",
+    "required": "This field is required",
+    "invalidEmail": "Enter a valid email address",
+    "errorMsg": "An error occurred. Please try again.",
+    "processTypes": {
+      "asylum": "Asylum",
+      "visa": "Visa",
+      "green_card": "Green Card",
+      "naturalization": "Naturalization / Citizenship",
+      "student_visa": "Student Visa",
+      "other": "Other"
+    },
+    "selectProcess": "-- Select a process --"
+  },
+  "admin": {
+    "title": "Attorney Portal",
+    "loginTitle": "Attorney Login",
+    "username": "Username",
+    "password": "Password",
+    "login": "Log In",
+    "logout": "Log Out",
+    "invalidCredentials": "Invalid username or password.",
+    "loginError": "Login failed. Please try again.",
+    "searchPlaceholder": "Search by name or email...",
+    "filterProcess": "Filter by process",
+    "filterStatus": "Filter by status",
+    "allProcesses": "All processes",
+    "allStatuses": "All statuses",
+    "noResults": "No clients found.",
+    "tableHeaders": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "country": "Country",
+      "process": "Process",
+      "status": "Status",
+      "date": "Date",
+      "actions": "Actions"
+    },
+    "statuses": {
+      "pending": "Pending",
+      "in_review": "In Review",
+      "completed": "Completed",
+      "closed": "Closed"
+    },
+    "detail": {
+      "title": "Client Detail",
+      "description": "Description",
+      "notes": "Attorney Notes",
+      "notesPlaceholder": "Add internal notes here...",
+      "status": "Status",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "saved": "Saved!",
+      "close": "Close",
+      "language": "Preferred Language"
+    }
+  }
+}

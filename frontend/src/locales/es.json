@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "register": "Registro de Clientes",
+    "admin": "Portal del Abogado"
+  },
+  "lang": {
+    "toggle": "English"
+  },
+  "form": {
+    "title": "Servicios de Inmigración – Formulario de Registro",
+    "subtitle": "Por favor complete el formulario. Un abogado se comunicará con usted pronto.",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo Electrónico",
+    "phone": "Número de Teléfono",
+    "country": "País de Origen",
+    "processType": "Tipo de Proceso",
+    "description": "Describa su situación",
+    "descriptionHint": "Por favor proporcione todos los detalles posibles sobre su caso.",
+    "submit": "Enviar Registro",
+    "submitting": "Enviando...",
+    "successTitle": "¡Registro Enviado!",
+    "successMsg": "Gracias. Su información ha sido recibida. Un abogado se comunicará con usted pronto.",
+    "newForm": "Enviar otro formulario",
+    "required": "Este campo es obligatorio",
+    "invalidEmail": "Ingrese un correo electrónico válido",
+    "errorMsg": "Ocurrió un error. Por favor intente de nuevo.",
+    "processTypes": {
+      "asylum": "Asilo",
+      "visa": "Visa",
+      "green_card": "Residencia Permanente (Green Card)",
+      "naturalization": "Naturalización / Ciudadanía",
+      "student_visa": "Visa de Estudiante",
+      "other": "Otro"
+    },
+    "selectProcess": "-- Seleccione un proceso --"
+  },
+  "admin": {
+    "title": "Portal del Abogado",
+    "loginTitle": "Acceso del Abogado",
+    "username": "Usuario",
+    "password": "Contraseña",
+    "login": "Ingresar",
+    "logout": "Cerrar Sesión",
+    "invalidCredentials": "Usuario o contraseña incorrectos.",
+    "loginError": "Error al iniciar sesión. Intente de nuevo.",
+    "searchPlaceholder": "Buscar por nombre o correo...",
+    "filterProcess": "Filtrar por proceso",
+    "filterStatus": "Filtrar por estado",
+    "allProcesses": "Todos los procesos",
+    "allStatuses": "Todos los estados",
+    "noResults": "No se encontraron clientes.",
+    "tableHeaders": {
+      "name": "Nombre",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "country": "País",
+      "process": "Proceso",
+      "status": "Estado",
+      "date": "Fecha",
+      "actions": "Acciones"
+    },
+    "statuses": {
+      "pending": "Pendiente",
+      "in_review": "En Revisión",
+      "completed": "Completado",
+      "closed": "Cerrado"
+    },
+    "detail": {
+      "title": "Detalle del Cliente",
+      "description": "Descripción",
+      "notes": "Notas del Abogado",
+      "notesPlaceholder": "Agregue notas internas aquí...",
+      "status": "Estado",
+      "save": "Guardar Cambios",
+      "saving": "Guardando...",
+      "saved": "¡Guardado!",
+      "close": "Cerrar",
+      "language": "Idioma Preferido"
+    }
+  }
+}
