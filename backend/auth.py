@@ -10,6 +10,8 @@ TOKEN_EXPIRE_HOURS = 8
 
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "changeme123")
+ADMIN2_USERNAME = os.getenv("ADMIN2_USERNAME", "")
+ADMIN2_PASSWORD = os.getenv("ADMIN2_PASSWORD", "")
 
 bearer_scheme = HTTPBearer()
 
@@ -34,4 +36,8 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(bearer_sche
 
 
 def authenticate_admin(username: str, password: str) -> bool:
-    return username == ADMIN_USERNAME and password == ADMIN_PASSWORD
+    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+        return True
+    if ADMIN2_USERNAME and username == ADMIN2_USERNAME and password == ADMIN2_PASSWORD:
+        return True
+    return False

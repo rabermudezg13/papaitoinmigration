@@ -52,6 +52,11 @@ export default function App() {
       <main className="max-w-6xl mx-auto px-4 pb-12">
         {tab === 'register' ? <ClientForm /> : <AdminPanel />}
       </main>
+
+      {/* Footer */}
+      <footer className="text-center py-4 text-xs text-gray-400 border-t border-gray-200">
+        Hecho por <span className="font-semibold text-gray-500">Cafe Cultura LLC</span>
+      </footer>
     </div>
   )
 }
