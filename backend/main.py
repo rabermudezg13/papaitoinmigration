@@ -6,7 +6,7 @@ from pydantic import BaseModel, EmailStr
 from datetime import datetime
 import models
 from database import Base, engine, get_db
-from auth import create_token, verify_token, authenticate_admin
+from auth import create_token, verify_token, authenticate_admin, hash_password
 
 Base.metadata.create_all(bind=engine)
 
@@ -67,11 +67,25 @@ class LoginResponse(BaseModel):
     token_type: str = "bearer"
 
 
+class AdminUserCreate(BaseModel):
+    username: str
+    password: str
+
+
+class AdminUserOut(BaseModel):
+    id: int
+    username: str
+    created_at: Optional[datetime]
+
+    class Config:
+        from_attributes = True
+
+
 # ---------- Auth ----------
 
 @app.post("/api/auth/login", response_model=LoginResponse)
-def login(data: LoginRequest):
-    if not authenticate_admin(data.username, data.password):
+def login(data: LoginRequest, db: Session = Depends(get_db)):
+    if not authenticate_admin(data.username, data.password, db):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
     token = create_token(data.username)
     return LoginResponse(access_token=token)
@@ -88,7 +102,7 @@ def register_client(data: ClientCreate, db: Session = Depends(get_db)):
     return client
 
 
-# ---------- Protected: attorney access ----------
+# ---------- Protected: clients ----------
 
 @app.get("/api/clients", response_model=List[ClientOut])
 def list_clients(
@@ -142,6 +156,61 @@ def update_client(
     db.commit()
     db.refresh(client)
     return client
+
+
+@app.delete("/api/clients/{client_id}", status_code=204)
+def delete_client(
+    client_id: int,
+    db: Session = Depends(get_db),
+    _: str = Depends(verify_token),
+):
+    client = db.query(models.Client).filter(models.Client.id == client_id).first()
+    if not client:
+        raise HTTPException(status_code=404, detail="Client not found")
+    db.delete(client)
+    db.commit()
+
+
+# ---------- Protected: admin users ----------
+
+@app.get("/api/admin/users", response_model=List[AdminUserOut])
+def list_admin_users(
+    db: Session = Depends(get_db),
+    _: str = Depends(verify_token),
+):
+    return db.query(models.AdminUser).order_by(models.AdminUser.created_at).all()
+
+
+@app.post("/api/admin/users", response_model=AdminUserOut, status_code=201)
+def create_admin_user(
+    data: AdminUserCreate,
+    db: Session = Depends(get_db),
+    _: str = Depends(verify_token),
+):
+    existing = db.query(models.AdminUser).filter(models.AdminUser.username == data.username).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Username already exists")
+    user = models.AdminUser(
+        username=data.username,
+        hashed_password=hash_password(data.password),
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
+
+
+@app.delete("/api/admin/users/{user_id}", status_code=204)
+def delete_admin_user(
+    user_id: int,
+    db: Session = Depends(get_db),
+    _: str = Depends(verify_token),
+):
+    user = db.query(models.AdminUser).filter(models.AdminUser.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    db.delete(user)
+    db.commit()
 
 
 @app.get("/api/health")
